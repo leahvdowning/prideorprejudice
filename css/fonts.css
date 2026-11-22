@@ -1,0 +1,43 @@
+/*
+  Typefaces. This is the only file that names font files.
+
+  The site ships with two open-licence faces so that nothing here needs a
+  paid web licence:
+    PoP Display  ->  Federo (SIL Open Font License)
+    PoP Mono     ->  Commit Mono (SIL Open Font License)
+
+  The project was designed in Edition Medieval (Elias Hanzer) and Auger Mono
+  (Signal Type Foundry). To use them, buy the web licences, put the web font
+  files in /fonts, and point the four "src" lines below at them. Nothing else
+  in the site needs to change.
+*/
+
+@font-face {
+  font-family: "PoP Display";
+  src: url("../fonts/federo-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PoP Mono";
+  src: url("../fonts/commit-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PoP Mono";
+  src: url("../fonts/commit-mono-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Small fit adjustments that belong to the typeface, not the layout */
+  --display-track: 0.015em;
+  --display-lh: 104%;
+}

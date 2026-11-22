@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Licensed typefaces are never committed. See css/fonts.css.
+fonts/licensed/
+*.otf

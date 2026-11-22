@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pride or Prejudice? What people say when they hear “Ireland is full”</title>
+  <meta name="description" content="334 Reddit comments on the phrase “Ireland is full”, sorted by where they stand and read four ways. A project by Leah Downing.">
+  <meta name="theme-color" content="#101712">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pride or Prejudice?">
+  <meta property="og:description" content="What 334 people said when they were asked how they feel about the phrase “Ireland is full”.">
+  <meta property="og:url" content="https://leahvdowning.github.io/prideorprejudice/">
+  <meta property="og:image" content="https://leahvdowning.github.io/prideorprejudice/img/share.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#comments">Skip to the comments</a>
+
+  <header class="top">
+    <h1 class="mark"><a href="#top">Pride or Prejudice?</a></h1>
+    <nav class="nav" aria-label="Sections">
+      <a href="#comments">The comments</a>
+      <a href="#findings">What they add up to</a>
+      <a href="#act">Do something</a>
+      <a href="#about">About</a>
+    </nav>
+    <button type="button" class="sound" id="sound" aria-pressed="false">Sound off</button>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ Opening ============ -->
+    <section class="opening wrap">
+      <p class="vh">Seven commenters finish the sentence “Ireland is” in seven different ways. They are shown one after another below.</p>
+      <p class="line" aria-hidden="true"><span class="line-inner"><span class="stem">Ireland </span><span class="ending" id="ending" data-stance="agree"><span class="w"><span class="is">is</span></span> full.</span></span></p>
+      <p class="who" aria-hidden="true">
+        <span id="who">Comment 8, from someone who agrees with the phrase</span>
+        <button type="button" class="text-btn" id="pause">Pause</button>
+      </p>
+      <p class="lede">In late 2025, six Reddit threads asked people in Ireland how they feel when they hear the phrase “Ireland is full”. <span data-stat="total">334</span> of their answers are collected here. Each line above is how one of them finished the sentence.</p>
+    </section>
+
+    <!-- ============ The comments ============ -->
+    <section class="room wrap" id="comments" aria-labelledby="room-title">
+      <div class="room-head">
+        <h2 class="display statement" id="room-title">Read what people said</h2>
+        <div class="room-intro">
+          <p>Every comment sits in one of three columns, by where it stands on the phrase. Scroll a column to read it. The four buttons change what stands out in the text.</p>
+          <fieldset class="lens">
+            <legend class="vh">What stands out in the text</legend>
+            <label><input type="radio" name="lens" value="all" checked><span>Everything</span></label>
+            <label><input type="radio" name="lens" value="feel"><span>Feelings</span></label>
+            <label><input type="radio" name="lens" value="lost"><span>What gets covered up</span></label>
+            <label><input type="radio" name="lens" value="phrase"><span>The phrase</span></label>
+          </fieldset>
+          <p class="lens-note" id="lens-note" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <fieldset class="tabs">
+        <legend class="vh">Which column to read</legend>
+        <label><input type="radio" name="stance" value="agree" checked><span>Full</span></label>
+        <label><input type="radio" name="stance" value="neither"><span>No clear side</span></label>
+        <label><input type="radio" name="stance" value="disagree"><span>Not full</span></label>
+      </fieldset>
+
+      <div class="cols" id="cols" data-lens="all" data-show="agree">
+        <article class="col" data-stance="agree">
+          <header class="col-head">
+            <h3 class="display" id="h-agree">Ireland is full</h3>
+            <p class="col-count" id="count-agree"></p>
+          </header>
+          <div class="scroll" id="col-agree" tabindex="0" role="region" aria-labelledby="h-agree"></div>
+        </article>
+        <article class="col" data-stance="neither">
+          <header class="col-head">
+            <h3 class="display" id="h-neither">Ireland is...</h3>
+            <p class="col-count" id="count-neither"></p>
+          </header>
+          <div class="scroll" id="col-neither" tabindex="0" role="region" aria-labelledby="h-neither"></div>
+        </article>
+        <article class="col" data-stance="disagree">
+          <header class="col-head">
+            <h3 class="display" id="h-disagree">Ireland is not full</h3>
+            <p class="col-count" id="count-disagree"></p>
+          </header>
+          <div class="scroll" id="col-disagree" tabindex="0" role="region" aria-labelledby="h-disagree"></div>
+        </article>
+      </div>
+      <noscript><p class="lens-note">The comments need JavaScript to load. You can read them as a spreadsheet in the <a href="https://github.com/leahvdowning/prideorprejudice/tree/gh-pages/data/source">project files</a>.</p></noscript>
+
+      <div class="ticker" id="ticker">
+        <p class="ticker-label">Counted by the State at the time</p>
+        <div class="ticker-window"><ul class="ticker-track" id="ticker-track"></ul></div>
+        <button type="button" class="text-btn" id="ticker-pause">Pause</button>
+      </div>
+    </section>
+
+    <!-- ============ Findings ============ -->
+    <section class="findings wrap two" id="findings" aria-labelledby="findings-title">
+      <h2 class="display statement two-title" id="findings-title">We all want the same thing: a functioning country</h2>
+
+      <div class="two-body">
+      <div class="prose">
+        <p>“Ireland is full” has become shorthand for more than borders. Read a few hundred answers from people on every side and a pattern shows up. The argument is rarely only about immigrants and locals. Much of it comes from people who are worn out by systems that keep failing them.</p>
+      </div>
+
+      <figure class="fig" id="fig-split">
+        <figcaption>Where the <span data-stat="total">334</span> comments stand on the phrase</figcaption>
+        <div class="split" id="split"></div>
+        <ul class="legend" id="split-legend"></ul>
+        <p class="fig-note">Of the <span data-stat="sided">212</span> comments that take a side, <span data-stat="sidedDisagreePct">75</span>% disagree with the phrase. The phrase itself is rarer than the argument about it: only <span data-stat="said">47</span> comments write the words “Ireland is full”.</p>
+      </figure>
+
+      <div class="prose">
+        <p>The people who agree with the phrase and the people who reject it are often talking about the same shortages. Half of the comments that agree mention housing, about as many as mention immigration. More than a third of the comments that disagree bring up housing too.</p>
+      </div>
+
+      <figure class="fig" id="fig-topics">
+        <figcaption>What each column talks about</figcaption>
+        <table class="topics" id="topics">
+          <thead>
+            <tr>
+              <th scope="col"><span class="vh">Topic</span></th>
+              <th scope="col"><i class="sw sw-agree"></i>Agree</th>
+              <th scope="col"><i class="sw sw-neither"></i>No clear side</th>
+              <th scope="col"><i class="sw sw-disagree"></i>Disagree</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p class="fig-note" id="topics-note">Share of the comments in each column that use at least one word from each group. A comment can count under more than one topic. The full word lists are in the About section.</p>
+      </figure>
+
+      <div class="prose">
+        <p>Most people in these threads are asking for the same few things: a home they can afford without waiting ten years, healthcare that does not depend on luck, and a life that feels stable.</p>
+        <p>The pressure has grown since the threads ran. In October 2025, <span data-fact="then.total">16,766</span> people were living in emergency accommodation in Ireland. By <span data-fact="now.month">September 2026</span> the figure was <span data-fact="now.total">18,065</span>, and <span data-fact="now.children">5,897</span> of them were children.</p>
+      </div>
+      </div>
+    </section>
+
+    <!-- ============ Act ============ -->
+    <section class="act wrap" id="act" aria-labelledby="act-title">
+      <div class="two">
+        <h2 class="display statement" id="act-title">Two things you can do</h2>
+        <div class="two-body">
+          <div class="prose">
+            <p>If reading the threads leaves you frustrated, here are two small things to do with that. The first is a short letter to the people elected to represent you. The second is a poster.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mail">
+        <h3 class="display">Email your TDs</h3>
+        <form class="mail-form" id="mail-form" novalidate>
+          <div class="mail-side">
+            <div class="step">
+              <h4><span class="step-n">1</span>Choose your constituency</h4>
+              <label class="field">
+                <span class="vh">Your constituency</span>
+                <select id="con" name="constituency">
+                  <option value="">Choose your constituency</option>
+                </select>
+              </label>
+              <p class="hint"><a href="https://electoralcommission.ie/who-are-my-tds" target="_blank" rel="noopener">Not sure which one is yours? Check with the Electoral Commission</a></p>
+              <ul class="tds" id="tds" aria-live="polite"></ul>
+            </div>
+
+            <div class="step">
+              <h4><span class="step-n">2</span>Make the letter yours</h4>
+              <label class="field"><span>Your name</span><input type="text" id="name" name="name" autocomplete="name"></label>
+              <label class="field"><span>Your town, area or Eircode</span><input type="text" id="place" name="place" autocomplete="address-level2"></label>
+              <fieldset class="asks" id="asks">
+                <legend>What you are asking for</legend>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="mail-main">
+            <div class="step">
+              <h4><span class="step-n">3</span>Read it, change it, send it</h4>
+              <div class="letter">
+                <label class="letter-subject"><span>Subject</span><input type="text" id="subject" name="subject"></label>
+                <label class="vh" for="letter">Your letter</label>
+                <textarea id="letter" name="letter" rows="20" spellcheck="true"></textarea>
+              </div>
+              <p class="rebuild" id="rebuild-row" hidden>You have changed the letter by hand, so the form has stopped updating it. <button type="button" class="text-btn" id="rebuild">Start again from the form</button></p>
+              <div class="send">
+                <a class="btn btn-solid" id="send-mail" href="#" aria-disabled="true">Open in my email app</a>
+                <a class="btn" id="send-gmail" href="#" target="_blank" rel="noopener" aria-disabled="true">Open in Gmail</a>
+                <button type="button" class="btn" id="copy-letter">Copy the letter</button>
+                <button type="button" class="btn" id="copy-to" disabled>Copy the addresses</button>
+              </div>
+              <p class="status" id="status" role="status"></p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="poster two">
+        <h3 class="display">Print the poster</h3>
+        <div class="two-body">
+        <p>An A3 poster to print, share or bring to the next march.</p>
+        <p><a class="btn" href="https://www.dropbox.com/scl/fi/nb6jyu55x05yxwad158ao/PrideOrPrejudice__A3.pdf?rlkey=m73r8xt2f78st74ungir5rkk9&amp;dl=1">Download the poster (PDF, A3)</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section class="about wrap" id="about" aria-labelledby="about-title">
+      <h2 class="display statement" id="about-title">About this project</h2>
+
+      <div class="about-row">
+        <h3 class="display">What it is</h3>
+        <div>
+          <p>Pride or Prejudice? is an interactive reading of how people respond when they hear the phrase “Ireland is full”. It does not try to settle whether Ireland is or is not full. It slows the phrase down, so you can see the feeling in it and how often it stands in for worries about housing, care and stability.</p>
+          <p>The comments come from public Reddit threads. Reddit is where headlines turn into everyday talk. People post without their names, and a strongly worded opinion can travel a long way before anyone checks it.</p>
+        </div>
+      </div>
+
+      <div class="about-row">
+        <h3 class="display">The threads</h3>
+        <div>
+          <p>Six threads asked the same question in late 2025. You can read each one in full.</p>
+          <ul class="links">
+            <li><a href="https://www.reddit.com/r/Dublin/comments/1p82h2o/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/Dublin: How do you feel when you hear the phrase “Ireland is full”?</a></li>
+            <li><a href="https://www.reddit.com/r/cork/comments/1p82j3i/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/cork: How do you feel when you hear the phrase “Ireland is full”?</a></li>
+            <li><a href="https://www.reddit.com/r/Kilkenny/comments/1p82jyc/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/Kilkenny: How do you feel when you hear the phrase “Ireland is full”?</a></li>
+            <li><a href="https://www.reddit.com/r/irishproblems/comments/1p9ugcc/what_do_you_think_when_you_hear_phrases_like/" target="_blank" rel="noopener">r/irishproblems: What do you think when you hear phrases like “Ireland is full”?</a></li>
+            <li><a href="https://www.reddit.com/r/AskReddit/comments/1p9uesv/ireland_what_do_you_feel_when_you_hear_phrases/" target="_blank" rel="noopener">r/AskReddit: Ireland, what do you feel when you hear phrases like this?</a></li>
+            <li><a href="https://www.reddit.com/r/IrishCentrists/comments/1p9uigr/what_do_you_feel_when_you_hear_phrases_like/" target="_blank" rel="noopener">r/IrishCentrists: What do you feel when you hear phrases like this?</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="about-row">
+        <h3 class="display">How the comments were sorted</h3>
+        <div>
+          <p>Each comment was given one of three labels: it agrees with the phrase, it disagrees with it, or it takes no clear side. The third group is mostly questions, jokes and replies between commenters.</p>
+          <p>In November 2026 the labels were read through again. <span data-stat="moved">11</span> comments whose own words put them clearly in a different column were moved. <span data-stat="leftOut">3</span> were left out because they were not answers: two deleted comments and a moderator notice. That leaves <span data-stat="total">334</span>. Usernames are not shown and links inside comments are shortened.</p>
+          <p>Every number on this page about the threads is counted from the comments shown here. The original labels, the list of changes and the script that does the counting are in the <a href="https://github.com/leahvdowning/prideorprejudice" target="_blank" rel="noopener">project files</a>.</p>
+          <dl class="wordlists" id="wordlists"></dl>
+        </div>
+      </div>
+
+      <div class="about-row">
+        <h3 class="display">What it cannot tell you</h3>
+        <div>
+          <p>Reddit is not Ireland. The people who answered chose to answer, and nobody was asked who they are or where they live. Sorting a comment into a column is a judgement, and another reader would sort some of them differently. Read the numbers as a description of these threads and of nothing wider.</p>
+          <p>You are encouraged to read the original threads in context, check claims somewhere else, and notice what is missing as well as what is shown. Checking facts, slowing down and looking for sources are small ways to stop wrong information spreading.</p>
+          <p>Tension and distrust are rising in Ireland, and a phrase like “Ireland is full” can be used to justify suspicion and hatred, mostly towards migrants and other people who are already pushed to the edge. This project asks you to look again before you share or repeat a line that may be doing more harm than it seems.</p>
+        </div>
+      </div>
+
+      <div class="about-row">
+        <h3 class="display">Official figures</h3>
+        <div>
+          <ul class="links" id="sources"></ul>
+        </div>
+      </div>
+
+      <div class="about-row">
+        <h3 class="display">Credits</h3>
+        <div>
+          <p>Research, concept and design by Leah Downing. First made in 2025 during the MA in Interaction Design at the National College of Art and Design, Dublin. Rebuilt in November 2026.</p>
+          <p id="colophon">The page uses no cookies, no trackers and no code from other sites. Nothing you type into the letter leaves your browser until you press send in your own email. TD names and addresses were copied from each member’s page on oireachtas.ie on <span data-tds="checked">22 November 2026</span>.</p>
+          <p>The whole page weighs under 400 KB and loads nothing from other sites. The sound loads only if you switch it on.</p>
+          <p id="type-credit">Set in Federo by Cyreal and Commit Mono by Eigil Nikolajsen, both under the SIL Open Font License.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p class="display">Pride or Prejudice?</p>
+    <p><a href="#top">Back to the top</a></p>
+  </footer>
+
+  <script src="data/comments.js"></script>
+  <script src="data/tds.js"></script>
+  <script src="data/facts.js"></script>
+  <script src="data/letter.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
