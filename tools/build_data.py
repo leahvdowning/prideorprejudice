@@ -6,8 +6,8 @@ Builds data/comments.js from the coded comments.
 
 Reads   data/source/comments_coded.csv   the comments as first coded (never edited)
         data/source/review_log.csv       later corrections, one row per comment
-Writes  data/comments.js                 the three columns as HTML, plus every
-                                         number the page shows about the thread
+Writes  data/comments.js                 the three columns as HTML
+        data/stats.js                    every number the site shows about the threads
 
 Every figure on the site about the thread comes out of this script, so the
 numbers on the page cannot drift away from the comments shown beside them.
@@ -18,6 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "data" / "source" / "comments_coded.csv"
 LOG = ROOT / "data" / "source" / "review_log.csv"
 OUT = ROOT / "data" / "comments.js"
+OUT_STATS = ROOT / "data" / "stats.js"
 
 STANCE = {"AGREE_IRELAND_IS_FULL": "agree", "DISAGREE_IRELAND_IS_FULL": "disagree", "AMBIGUOUS_OR_META": "neither"}
 REVISED = {"AGREE": "agree", "DISAGREE": "disagree", "NEITHER": "neither"}
@@ -59,6 +60,14 @@ OPENING = [
     (92, " full… …full of pints"),
     (69, " less full than woefully mismanaged."),
     (24, " one of the safest countries in the world"),
+]
+
+# Quotes shown large on the findings page. Each is checked against its comment, word for word.
+QUOTES = [
+    (1, "Ireland is full, so we should increase its capacity is my standing."),
+    (69, "Ireland is less full than woefully mismanaged."),
+    (116, "We have thousands of homeless people. We have a rental market crisis. We have long waiting lists for hospital appointments."),
+    (57, "We have the land, resources and money to build all the houses we need - both for Irish people and immigrants."),
 ]
 
 PHRASE = re.compile(r"ireland\s+is\s+full", re.I)
@@ -159,6 +168,11 @@ def main():
         assert needle in c["text"].lower(), "opening line for comment %d is not in the comment" % n
         opening.append({"n": n, "text": ending, "stance": c["stance"]})
 
+    quotes = []
+    for n, text in QUOTES:
+        assert text in by_n[n]["text"], "quote for comment %d is not in the comment word for word" % n
+        quotes.append({"n": n, "text": text, "stance": by_n[n]["stance"]})
+
     stats = {"total": total, "leftOut": left_out, "moved": moved, "sourceRows": len(rows), "stances": {}, "topics": []}
     columns = {}
     all_counts = collections.Counter()
@@ -212,10 +226,14 @@ def main():
     assert abs(t["housing"]["agree"]["pct"] - t["immigration"]["agree"]["pct"]) <= 6, \
         "text says agreeing comments mention housing about as often as immigration"
     assert t["housing"]["disagree"]["pct"] > 34, "text says more than a third of disagreeing comments mention housing"
+    assert 72 <= stats["sidedDisagreePct"] <= 78, "text says three in four of the comments that take a side disagree"
+    stats["quotes"] = quotes
 
-    data = {"stats": stats, "opening": opening, "columns": columns}
-    OUT.write_text("/* Built by tools/build_data.py. Do not edit by hand. */\nwindow.POP_DATA = "
-                   + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
+    head = "/* Built by tools/build_data.py. Do not edit by hand. */\n"
+    OUT_STATS.write_text(head + "window.POP_STATS = " + json.dumps(stats, ensure_ascii=False, separators=(",", ":"))
+                         + ";\n", encoding="utf-8")
+    OUT.write_text(head + "window.POP_DATA = " + json.dumps({"opening": opening, "columns": columns},
+                   ensure_ascii=False, separators=(",", ":")) + ";\n", encoding="utf-8")
 
     print("comments shown:", total, "| left out:", left_out, "| moved:", moved)
     for s in ORDER:

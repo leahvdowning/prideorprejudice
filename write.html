@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Write to your TDs. Pride or Prejudice?</title>
+  <meta name="description" content="A short letter about housing and public services that you can change and send to the TDs for your constituency.">
+  <meta name="theme-color" content="#101712">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Write to your TDs. Pride or Prejudice?">
+  <meta property="og:description" content="A short letter about housing and public services that you can change and send to the TDs for your constituency.">
+  <meta property="og:url" content="https://leahvdowning.github.io/prideorprejudice/write.html">
+  <meta property="og:image" content="https://leahvdowning.github.io/prideorprejudice/img/share.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the page</a>
+
+  <!-- Header and menu. The same block sits at the top of all four pages. -->
+  <header class="top">
+    <a class="pill glass mark" href="index.html">Pride or Prejudice?</a>
+    <div class="top-right">
+      <button type="button" class="pill glass sound" data-sound aria-pressed="false">Sound off</button>
+      <button type="button" class="pill glass" id="menu-open" aria-expanded="false" aria-controls="menu"><span class="burger" aria-hidden="true"><i></i><i></i></span>Menu</button>
+    </div>
+  </header>
+  <div class="veil" id="veil" hidden></div>
+  <nav class="menu" id="menu" aria-label="Menu" hidden>
+    <div class="menu-head">
+      <span>Pride or Prejudice?</span>
+      <button type="button" class="pill" id="menu-close">Close</button>
+    </div>
+    <ol class="menu-list">
+      <li><a href="index.html#comments"><span class="num">1</span><span class="name">The comments</span><span class="go" aria-hidden="true">→</span></a></li>
+      <li><a href="findings.html"><span class="num">2</span><span class="name">The findings</span><span class="go" aria-hidden="true">→</span></a></li>
+      <li><a href="write.html" aria-current="page"><span class="num">3</span><span class="name">Write to your TDs</span><span class="go" aria-hidden="true">→</span></a></li>
+      <li><a href="write.html#poster"><span class="num">4</span><span class="name">The poster</span><span class="go" aria-hidden="true">→</span></a></li>
+      <li><a href="about.html"><span class="num">5</span><span class="name">About the project</span><span class="go" aria-hidden="true">→</span></a></li>
+    </ol>
+    <div class="menu-foot">
+      <p class="menu-note">334 answers to one question, asked on Reddit in late 2025: how do you feel when you hear the phrase “Ireland is full”?</p>
+      <button type="button" class="pill sound" data-sound aria-pressed="false">Sound off</button>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="page-head wrap">
+      <h1 class="display page-title">Write to your TDs</h1>
+      <div class="standfirst">
+        <p class="byline">A short letter to the people<br>elected to represent you.</p>
+        <p class="lede">If reading the comments leaves you frustrated, this is one small thing to do with that. Choose your constituency, change the letter until it sounds like you, and send it from your own email.</p>
+      </div>
+    </header>
+
+    <section class="section wrap">
+      <form class="mail-form" id="mail-form" novalidate>
+        <div class="mail-side">
+          <div class="step">
+            <h3><span class="step-n">1</span>Choose your constituency</h3>
+            <label class="field">
+              <span class="vh">Your constituency</span>
+              <select id="con" name="constituency">
+                <option value="">Choose your constituency</option>
+              </select>
+            </label>
+            <p class="hint"><a href="https://electoralcommission.ie/who-are-my-tds" target="_blank" rel="noopener">Not sure which one is yours? Check with the Electoral Commission</a></p>
+            <ul class="tds" id="tds" aria-live="polite"></ul>
+          </div>
+
+          <div class="step">
+            <h3><span class="step-n">2</span>Make the letter yours</h3>
+            <label class="field"><span>Your name</span><input type="text" id="name" name="name" autocomplete="name"></label>
+            <label class="field"><span>Your town, area or Eircode</span><input type="text" id="place" name="place" autocomplete="address-level2"></label>
+            <fieldset class="asks" id="asks">
+              <legend>What you are asking for</legend>
+            </fieldset>
+          </div>
+        </div>
+
+        <div class="mail-main">
+          <div class="step">
+            <h3><span class="step-n">3</span>Read it, change it, send it</h3>
+            <div class="letter">
+              <label class="letter-subject"><span>Subject</span><input type="text" id="subject" name="subject"></label>
+              <label class="vh" for="letter">Your letter</label>
+              <textarea id="letter" name="letter" rows="20" spellcheck="true"></textarea>
+            </div>
+            <p class="rebuild" id="rebuild-row" hidden>You have changed the letter by hand, so the form has stopped updating it. <button type="button" class="text-btn" id="rebuild">Start again from the form</button></p>
+            <div class="send">
+              <a class="pill pill-solid" id="send-mail" href="#" aria-disabled="true">Open in my email app</a>
+              <a class="pill" id="send-gmail" href="#" target="_blank" rel="noopener" aria-disabled="true">Open in Gmail</a>
+              <button type="button" class="pill" id="copy-letter">Copy the letter</button>
+              <button type="button" class="pill" id="copy-to" disabled>Copy the addresses</button>
+            </div>
+            <p class="status" id="status" role="status"></p>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="poster-band" id="poster">
+      <div class="wrap two">
+        <h2 class="display">Print the poster</h2>
+        <div>
+          <p>An A3 poster to print, share or bring to the next march.</p>
+          <p><a class="pill" href="https://www.dropbox.com/scl/fi/nb6jyu55x05yxwad158ao/PrideOrPrejudice__A3.pdf?rlkey=m73r8xt2f78st74ungir5rkk9&amp;dl=1">Download the poster (PDF, A3)</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer. The same block sits at the bottom of all four pages. -->
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="display foot-mark">Pride or Prejudice?</p>
+        <p>334 answers to one question, asked in six Reddit threads in late 2025: how do you feel when you hear the phrase “Ireland is full”? The answers are sorted by where they stand and laid out as the green, white and orange of the flag.</p>
+        <p>A project by Leah Downing.</p>
+      </div>
+      <div>
+        <h2>The threads the comments come from</h2>
+        <ul>
+          <li><a href="https://www.reddit.com/r/Dublin/comments/1p82h2o/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/Dublin</a></li>
+          <li><a href="https://www.reddit.com/r/cork/comments/1p82j3i/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/cork</a></li>
+          <li><a href="https://www.reddit.com/r/Kilkenny/comments/1p82jyc/how_do_you_feel_when_you_hear_the_phrase_ireland/" target="_blank" rel="noopener">r/Kilkenny</a></li>
+          <li><a href="https://www.reddit.com/r/irishproblems/comments/1p9ugcc/what_do_you_think_when_you_hear_phrases_like/" target="_blank" rel="noopener">r/irishproblems</a></li>
+          <li><a href="https://www.reddit.com/r/AskReddit/comments/1p9uesv/ireland_what_do_you_feel_when_you_hear_phrases/" target="_blank" rel="noopener">r/AskReddit</a></li>
+          <li><a href="https://www.reddit.com/r/IrishCentrists/comments/1p9uigr/what_do_you_feel_when_you_hear_phrases_like/" target="_blank" rel="noopener">r/IrishCentrists</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>The site</h2>
+        <ul>
+          <li><a href="index.html#comments">The comments</a></li>
+          <li><a href="findings.html">The findings</a></li>
+          <li><a href="write.html">Write to your TDs</a></li>
+          <li><a href="write.html#poster">The poster</a></li>
+          <li><a href="about.html">About the project</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data/stats.js"></script>
+  <script src="data/tds.js"></script>
+  <script src="data/letter.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

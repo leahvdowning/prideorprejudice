@@ -1,17 +1,19 @@
 /*
   Pride or Prejudice?
-  No libraries. Data comes from the four files in /data.
+  One script for all four pages. No libraries. Each part below looks for its own
+  piece of the page and does nothing if that piece is not there.
+  Data comes from the files in /data.
 */
 (function () {
   "use strict";
 
-  var D = window.POP_DATA;
+  var D = window.POP_DATA || {};
+  var S = window.POP_STATS;
   var TDS = window.POP_TDS;
   var FACTS = window.POP_FACTS;
   var L = window.POP_LETTER;
-  if (!D) return;
+  if (!S) return;
 
-  var S = D.stats;
   var STANCES = ["agree", "neither", "disagree"];
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var canHover = window.matchMedia("(hover: hover)").matches;
@@ -32,6 +34,41 @@
     var p = iso.split("-");
     return parseInt(p[2], 10) + " " + months[parseInt(p[1], 10) - 1] + " " + p[0];
   }
+
+  /* ---------------------------------------------------------
+     The menu
+     --------------------------------------------------------- */
+  (function menu() {
+    var open = $("menu-open"), close = $("menu-close"), panel = $("menu"), veil = $("veil");
+    if (!open || !panel) return;
+
+    function show() {
+      panel.hidden = false;
+      veil.hidden = false;
+      open.setAttribute("aria-expanded", "true");
+      window.requestAnimationFrame(function () {
+        document.body.classList.add("menu-open");
+        var first = panel.querySelector(".menu-list a");
+        if (first) first.focus();
+      });
+    }
+    function hide(back) {
+      document.body.classList.remove("menu-open");
+      open.setAttribute("aria-expanded", "false");
+      window.setTimeout(function () { panel.hidden = true; veil.hidden = true; }, reduceMotion ? 0 : 280);
+      if (back) open.focus();
+    }
+    open.addEventListener("click", show);
+    close.addEventListener("click", function () { hide(true); });
+    veil.addEventListener("click", function () { hide(false); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !panel.hidden) hide(true);
+    });
+    /* A link to a place on the page you are already on should also close the menu */
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("a")) hide(false);
+    });
+  })();
 
   /* ---------------------------------------------------------
      Numbers in the text come from the data, never typed by hand
@@ -164,7 +201,7 @@
      --------------------------------------------------------- */
   (function room() {
     var cols = $("cols");
-    if (!cols) return;
+    if (!cols || !D.columns) return;
 
     STANCES.forEach(function (k) { $("col-" + k).innerHTML = D.columns[k]; });
 
@@ -181,7 +218,7 @@
     var COUNTS = {
       all: {
         agree: function (s) { return fmt(s.n) + " comments agree with the phrase"; },
-        neither: function (s) { return fmt(s.n) + " take no clear side: questions, jokes and replies"; },
+        neither: function (s) { return fmt(s.n) + " take no clear side"; },
         disagree: function (s) { return fmt(s.n) + " comments disagree with it"; }
       },
       feel: function (s) { return fmt(s.feel) + " feeling words in " + fmt(s.words) + " words"; },
@@ -306,24 +343,31 @@
     var NAMES = { agree: "Agree with the phrase", neither: "No clear side", disagree: "Disagree with the phrase" };
     var SHORT = { agree: "Agree", neither: "No clear side", disagree: "Disagree" };
 
-    var split = $("split");
-    var legend = $("split-legend");
-    if (split) {
-      split.setAttribute("role", "img");
-      split.setAttribute("aria-label", STANCES.map(function (k) {
+    var tri = $("tricolour");
+    if (tri) {
+      tri.setAttribute("role", "img");
+      tri.setAttribute("aria-label", STANCES.map(function (k) {
         return NAMES[k] + ": " + S.stances[k].pct + "%";
       }).join(". "));
       STANCES.forEach(function (k) {
         var s = S.stances[k];
-        var seg = el("div", "seg seg-" + k, s.pct + "%");
+        var seg = el("div", "tri tri-" + k);
         seg.style.flex = s.n + " 1 0";
-        seg.title = NAMES[k] + ": " + fmt(s.n) + " of " + fmt(S.total) + " comments";
-        split.appendChild(seg);
+        seg.style.setProperty("--share", s.pct);
+        seg.appendChild(el("div", "tri-n", s.pct + "%"));
+        seg.appendChild(el("div", "tri-label", NAMES[k] + " (" + fmt(s.n) + ")"));
+        tri.appendChild(seg);
+      });
+    }
 
-        var li = el("li");
-        li.appendChild(el("i", "sw sw-" + k));
-        li.appendChild(el("span", null, NAMES[k] + " (" + fmt(s.n) + ")"));
-        legend.appendChild(li);
+    var quotes = $("quotes");
+    if (quotes && S.quotes) {
+      var SAID = { agree: "agrees with the phrase", neither: "takes no clear side", disagree: "disagrees with the phrase" };
+      S.quotes.forEach(function (q) {
+        var b = el("blockquote", "quote quote-" + q.stance);
+        b.appendChild(el("p", null, "\u201C" + q.text + "\u201D"));
+        b.appendChild(el("footer", null, "Comment " + q.n + ", " + SAID[q.stance]));
+        quotes.appendChild(b);
       });
     }
 
@@ -570,10 +614,11 @@
      Sound. Nothing is downloaded until it is switched on.
      --------------------------------------------------------- */
   (function sound() {
-    var btn = $("sound");
-    if (!btn) return;
+    var buttons = document.querySelectorAll("[data-sound]");
+    if (!buttons.length) return;
     var audio = null;
     var fade = null;
+    var on = false;
 
     function ramp(to, then) {
       window.clearInterval(fade);
@@ -589,8 +634,8 @@
       }, 60);
     }
 
-    btn.addEventListener("click", function () {
-      var on = btn.getAttribute("aria-pressed") !== "true";
+    function toggle() {
+      on = !on;
       if (!audio) {
         audio = new Audio("audio/air.mp3");
         audio.loop = true;
@@ -603,8 +648,11 @@
       } else {
         ramp(0, function () { audio.pause(); });
       }
-      btn.setAttribute("aria-pressed", String(on));
-      btn.textContent = on ? "Sound on" : "Sound off";
-    });
+      buttons.forEach(function (b) {
+        b.setAttribute("aria-pressed", String(on));
+        b.textContent = on ? "Sound on" : "Sound off";
+      });
+    }
+    buttons.forEach(function (b) { b.addEventListener("click", toggle); });
   })();
 })();
